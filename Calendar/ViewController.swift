@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import Button
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var dropinButton: BTNDropinButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let location: BTNLocation = BTNLocation.init(name: "Yoga", latitude: 40.723027, longitude: -73.9956459);
+        let context: BTNContext = BTNContext.init(subjectLocation: location);
+        
+        if let button = self.dropinButton {
+            button.prepareWithContext(context, completion: { (isDisplayable: Bool) -> Void in
+                print("Displayable: \(isDisplayable)")
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {

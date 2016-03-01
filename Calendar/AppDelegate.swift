@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Button
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        Button.allowButtonToRequestLocationPermission(true)
+        
+        Button.sharedButton().configureWithApplicationId("YOUR-APPLICATION-ID") { (configError: NSError?) -> Void in
+            if let error = configError {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
         return true
     }
 
